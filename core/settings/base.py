@@ -133,7 +133,6 @@ EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL")
 EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
 EMAIL_PORT = env.str("EMAIL_PORT")
 
-
 STATIC_URL = "static/"
 STATICFILES_DIRS = (BASE_DIR / "static",)
 STATIC_ROOT = BASE_DIR / "staticfiles"
