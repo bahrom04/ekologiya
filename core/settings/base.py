@@ -5,9 +5,9 @@ env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = env.str("SECRET_KEY")
 
-DEBUG = os.getenv("DEBUG")
+DEBUG = env.bool("DEBUG")
 
 DJANGO_APPS = [
     "jazzmin",
