@@ -31,8 +31,6 @@ THIRD_PARTY_APPS = [
 
 INSTALLED_APPS = DJANGO_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -150,6 +148,7 @@ CKEDITOR_CONFIGS = {
         "width": 700,
     }
 }
+CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_THUMBNAIL_SIZE = (450, 300)
 CKEDITOR_JQUERY_URL = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
