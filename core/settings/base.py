@@ -7,8 +7,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = env.str("SECRET_KEY")
 
-DEBUG = env.bool("DEBUG")
-
 DJANGO_APPS = [
     "jazzmin",
     "django.contrib.admin",
