@@ -1,32 +1,30 @@
 FROM python:3.10.12-alpine
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+WORKDIR /usr/src/app
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# set work directory
-RUN mkdir code
-WORKDIR /code
+RUN apk update && apk add postgresql-dev
 
-
-# Install gettext for internationalization
-RUN apk add --no-cache gettext
-
-# Copy requirements and install dependencies
-COPY requirements/base.txt /code/base.txt
-COPY requirements/production.txt /code/production.txt
+COPY requirements/base.txt base.txt
+COPY requirements/production.txt production.txt
 
 RUN pip install pip --upgrade  && pip install -r production.txt
 
+RUN mkdir -p /home/app
 
-COPY . /code/
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
 
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/static
+RUN mkdir $APP_HOME/media
 
-# Set executable permission for the entrypoint script
+WORKDIR $APP_HOME
 
-RUN ["chmod", "+x", "/code/docker-entrypoint.sh"]
+COPY . .
 
-# # Set the entrypoint
-ENTRYPOINT ["sh","/code/docker-entrypoint.sh"]
+RUN ["chmod", "+x", "/home/app/web/entrypoint.sh"]
 
-
+RUN rm -rf /etc/apk/cache
